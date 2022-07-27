@@ -1,0 +1,96 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Análise Preliminar
+## Carregando pacotes exigidos
+```{r}
+library(tidyverse)
+library(ExpDes.pt)
+library(readxl)
+library(janitor)
+library(skimr)
+```
+
+
+## Entrada de dados
+
+```{r}
+dados<- read_excel("data/Análise_Preliminar.xlsx") %>% 
+  clean_names()
+```
+
+
+## Resumo rápido
+
+```{r}
+glimpse(dados)
+```
+
+## Estatística rápida
+
+```{r}
+skim(dados)
+```
+
+## Análise para Ensaio 01
+```{r}
+ensaio_1 <- dados %>% 
+  filter(ensaio == 1)
+for(i in  7:length(ensaio_1)){
+  print("************ Análise de Variância ***************")
+  print(paste0("Variável: ",names(ensaio_1[,i])))
+  print("*************************************************")
+  
+  print("--------Análise de resíduos---------")
+  trat <- ensaio_1 %>%  pull(tratamento)
+  y <- data.frame(ensaio_1)[,i]
+  mod <- aov(y~as.factor(trat))
+  rs<-rstudent(mod)
+  hist(rs)
+  print(shapiro.test(rs))
+  
+  plot(y ~ as.factor(trat))
+  print(lawstat::levene.test(y,trat))
+  
+  print("---------Teste F da ANOVA - DBC -----------")
+  bl <- ensaio_1 %>% pull(repeticao)
+  dbc(trat, bl, y)
+}
+```
+
+
+## Análise para Ensaio 02
+```{r}
+ensaio_2 <- dados %>% 
+  filter(ensaio == 2)
+for(i in  7:length(ensaio_2)){
+  print("************ Análise de Variância ***************")
+  print(paste0("Variável: ",names(ensaio_2[,i])))
+  print("*************************************************")
+  
+  print("--------Análise de resíduos---------")
+  trat <- ensaio_1 %>%  pull(tratamento)
+  y <- data.frame(ensaio_2)[,i]
+  mod <- aov(y~as.factor(trat))
+  rs<-rstudent(mod)
+  hist(rs)
+  print(shapiro.test(rs))
+  
+  plot(y ~ as.factor(trat))
+  print(lawstat::levene.test(y,trat))
+  
+  print("---------Teste F da ANOVA - DBC -----------")
+  bl <- ensaio_2 %>% pull(repeticao)
+  dbc(trat, bl, y)
+}
+```
