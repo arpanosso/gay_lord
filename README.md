@@ -136,13 +136,13 @@ for(i in  7:length(ensaio_1)){
   # print("--------Análise de resíduos---------")
   trat <- ensaio_1 %>%  pull(tratamento)
   y <- data.frame(ensaio_1)[,i]
-  # mod <- aov(y~as.factor(trat))
-  # rs<-rstudent(mod)
-  # hist(rs)
-  # print(shapiro.test(rs))
-  # 
-  # plot(y ~ as.factor(trat))
-  # print(lawstat::levene.test(y,trat))
+  mod <- aov(y~as.factor(trat))
+  rs<-rstudent(mod)
+  hist(rs)
+  print(shapiro.test(rs))
+
+  plot(y ~ as.factor(trat))
+  print(lawstat::levene.test(y,trat))
   
   print("---------Teste F da ANOVA - DBC -----------")
   bl <- ensaio_1 %>% pull(repeticao)
@@ -151,684 +151,1044 @@ for(i in  7:length(ensaio_1)){
 #> [1] "************ Análise de Variância ***************"
 #> [1] "Variável: massa_8m"
 #> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL      SQ      QM      Fc   Pr>Fc
-#> Tratamento  3   267.5   89.18 0.10686 0.95396
-#> Bloco       3  4200.2 1400.08 1.67760 0.24049
-#> Residuo     9  7511.2  834.57                
-#> Total      15 11978.9                        
-#> ------------------------------------------------------------------------
-#> CV = 13.8 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.7915836 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.9544917 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 213.6775
-#> 2      2 213.1625
-#> 3      3 204.8750
-#> 4      4 205.6625
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: number_perfilhos"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL      SQ      QM      Fc   Pr>Fc
-#> Tratamento  3   860.2  286.73 0.33186 0.80271
-#> Bloco       3  4051.7 1350.56 1.56314 0.26496
-#> Residuo     9  7776.1  864.01                
-#> Total      15 12687.9                        
-#> ------------------------------------------------------------------------
-#> CV = 19.54 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.4201356 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.1366023 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis Medias
-#> 1      1 156.00
-#> 2      2 159.25
-#> 3      3 142.00
-#> 4      4 144.50
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: massa_10_canas"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL     SQ     QM     Fc    Pr>Fc
-#> Tratamento  3  8.356 2.7854 1.8467 0.209015
-#> Bloco       3 26.226 8.7421 5.7959 0.017348
-#> Residuo     9 13.575 1.5083                
-#> Total      15 48.158                       
-#> ------------------------------------------------------------------------
-#> CV = 7.65 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.9543917 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.04776347 
-#> ATENCAO: a 5% de significancia, as variancias nao podem ser consideradas homogeneas!
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis  Medias
-#> 1      1 16.2375
-#> 2      2 16.8875
-#> 3      3 14.9000
-#> 4      4 16.2250
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: espessura_media_10_canas"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL       SQ       QM      Fc   Pr>Fc
-#> Tratamento  3 0.001622 0.000541 0.04198 0.98778
-#> Bloco       3 0.103110 0.034370 2.66879 0.11089
-#> Residuo     9 0.115906 0.012878                
-#> Total      15 0.220637                         
-#> ------------------------------------------------------------------------
-#> CV = 4.28 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.9862714 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.6400136 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 2.662500
-#> 2      2 2.655000
-#> 3      3 2.635000
-#> 4      4 2.649528
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: number_entrenos_media_10_canas"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL     SQ     QM     Fc   Pr>Fc
-#> Tratamento  3  9.335 3.1117 1.8406 0.21006
-#> Bloco       3  7.890 2.6300 1.5557 0.26665
-#> Residuo     9 15.215 1.6906               
-#> Total      15 32.440                      
-#> ------------------------------------------------------------------------
-#> CV = 8.28 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.6853326 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.8308401 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis Medias
-#> 1      1 15.825
-#> 2      2 16.900
-#> 3      3 15.050
-#> 4      4 15.025
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: altura_planta_p_q"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL      SQ       QM     Fc   Pr>Fc
-#> Tratamento  3 0.09484 0.031615 1.8782 0.20370
-#> Bloco       3 0.08579 0.028595 1.6988 0.23625
-#> Residuo     9 0.15149 0.016833               
-#> Total      15 0.33212                        
-#> ------------------------------------------------------------------------
-#> CV = 5.58 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.4947776 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.7929306 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 2.338250
-#> 2      2 2.443639
-#> 3      3 2.258167
-#> 4      4 2.254278
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: populacao"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL         SQ        QM      Fc   Pr>Fc
-#> Tratamento  3  149353042  49784347 0.33186 0.80271
-#> Bloco       3  703488312 234496104 1.56314 0.26496
-#> Residuo     9 1350145855 150016206                
-#> Total      15 2202987209                          
-#> ------------------------------------------------------------------------
-#> CV = 19.54 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.4201356 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.1366023 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 65003.25
-#> 2      2 66357.48
-#> 3      3 59169.62
-#> 4      4 60211.34
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: tch_1_2_linhas_8m"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL      SQ      QM      Fc   Pr>Fc
-#> Tratamento  3   46.45  15.484 0.10686 0.95396
-#> Bloco       3  729.28 243.093 1.67760 0.24049
-#> Residuo     9 1304.15 144.906                
-#> Total      15 2079.88                        
-#> ------------------------------------------------------------------------
-#> CV = 13.8 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.7915836 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.9544917 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 89.03674
-#> 2      2 88.82215
-#> 3      3 85.36885
-#> 4      4 85.69699
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: tch_2_10_canas"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL      SQ      QM      Fc  Pr>Fc
-#> Tratamento  3  1318.8  439.61 0.79459 0.5271
-#> Bloco       3  4749.9 1583.31 2.86179 0.0966
-#> Residuo     9  4979.3  553.26               
-#> Total      15 11048.1                       
-#> ------------------------------------------------------------------------
-#> CV = 23.16 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.2078563 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.2856511 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis    Medias
-#> 1      1 104.56148
-#> 2      2 113.92601
-#> 3      3  88.89247
-#> 4      4  98.85494
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: tch_3_media"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL     SQ     QM     Fc   Pr>Fc
-#> Tratamento  3  447.0 149.00 1.0964 0.39964
-#> Bloco       3 2070.3 690.12 5.0783 0.02500
-#> Residuo     9 1223.0 135.89               
-#> Total      15 3740.4                      
-#> ------------------------------------------------------------------------
-#> CV = 12.35 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.1618443 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.5649149 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis    Medias
-#> 1      1  96.79911
-#> 2      2 101.37408
-#> 3      3  87.13066
-#> 4      4  92.27597
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: pol"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL      SQ      QM      Fc   Pr>Fc
-#> Tratamento  3  2.6417 0.88056 0.73659 0.55617
-#> Bloco       3  3.0764 1.02545 0.85780 0.49719
-#> Residuo     9 10.7591 1.19545                
-#> Total      15 16.4771                        
-#> ------------------------------------------------------------------------
-#> CV = 7.64 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.5013209 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.8613202 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 14.27396
-#> 2      2 13.67682
-#> 3      3 14.75126
-#> 4      4 14.56227
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: fibra"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL     SQ      QM      Fc   Pr>Fc
-#> Tratamento  3 1.5049 0.50164 1.07525 0.40739
-#> Bloco       3 1.0434 0.34781 0.74553 0.55158
-#> Residuo     9 4.1988 0.46653                
-#> Total      15 6.7471                        
-#> ------------------------------------------------------------------------
-#> CV = 5.13 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.4570751 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.847167 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis  Medias
-#> 1      1 13.1976
-#> 2      2 13.0002
-#> 3      3 13.2540
-#> 4      4 13.8246
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: pza"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL     SQ     QM      Fc   Pr>Fc
-#> Tratamento  3  5.410 1.8032 0.23179 0.87199
-#> Bloco       3 20.289 6.7631 0.86933 0.49192
-#> Residuo     9 70.017 7.7797                
-#> Total      15 95.716                       
-#> ------------------------------------------------------------------------
-#> CV = 3.67 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.5806142 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.791978 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis  Medias
-#> 1      1 75.2775
-#> 2      2 75.5700
-#> 3      3 76.5050
-#> 4      4 76.6250
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: pcc"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL      SQ      QM      Fc   Pr>Fc
-#> Tratamento  3  1.4583 0.48610 0.66795 0.59265
-#> Bloco       3  2.1510 0.71699 0.98522 0.44223
-#> Residuo     9  6.5498 0.72775                
-#> Total      15 10.1590                        
-#> ------------------------------------------------------------------------
-#> CV = 7.2 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.4033873 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.703461 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 11.83004
-#> 2      2 11.38075
-#> 3      3 12.21645
-#> 4      4 11.94921
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: ar_percent_caldo"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL       SQ        QM      Fc   Pr>Fc
-#> Tratamento  3 0.006367 0.0021222 0.23193 0.87189
-#> Bloco       3 0.023860 0.0079532 0.86917 0.49200
-#> Residuo     9 0.082354 0.0091504                
-#> Total      15 0.112580                          
-#> ------------------------------------------------------------------------
-#> CV = 9.25 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.5791314 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.7911165 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 1.058878
-#> 2      2 1.049034
-#> 3      3 1.016814
-#> 4      4 1.012742
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: ar_percent_cana"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL       SQ        QM      Fc   Pr>Fc
-#> Tratamento  3 0.006549 0.0021829 0.31943 0.81128
-#> Bloco       3 0.018483 0.0061610 0.90155 0.47753
-#> Residuo     9 0.061504 0.0068338                
-#> Total      15 0.086536                          
-#> ------------------------------------------------------------------------
-#> CV = 9.65 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.3476115 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.8923189 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis    Medias
-#> 1      1 0.8789865
-#> 2      2 0.8729498
-#> 3      3 0.8428425
-#> 4      4 0.8305283
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: atr"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL     SQ     QM      Fc   Pr>Fc
-#> Tratamento  3 121.91 40.635 0.73049 0.55932
-#> Bloco       3 175.31 58.438 1.05052 0.41665
-#> Residuo     9 500.65 55.628                
-#> Total      15 797.87                       
-#> ------------------------------------------------------------------------
-#> CV = 6.19 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.3983339 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.6121557 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 120.6500
-#> 2      2 116.3175
-#> 3      3 124.0025
-#> 4      4 121.3475
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: tah_1"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL     SQ     QM      Fc   Pr>Fc
-#> Tratamento  3  0.271 0.0904 0.04043 0.98843
-#> Bloco       3 15.270 5.0900 2.27690 0.14857
-#> Residuo     9 20.119 2.2355                
-#> Total      15 35.660                       
-#> ------------------------------------------------------------------------
-#> CV = 14.21 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.9938142 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.3646106 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 10.70548
-#> 2      2 10.34328
-#> 3      3 10.54626
-#> 4      4 10.48162
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: tah_2"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL      SQ      QM      Fc   Pr>Fc
-#> Tratamento  3  11.855  3.9516 0.35593 0.78623
-#> Bloco       3  90.731 30.2437 2.72410 0.10655
-#> Residuo     9  99.921 11.1023                
-#> Total      15 202.506                        
-#> ------------------------------------------------------------------------
-#> CV = 27.08 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.5947627 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.5202268 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 12.72181
-#> 2      2 13.35016
-#> 3      3 11.01247
-#> 4      4 12.14077
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: tah_3"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL     SQ      QM     Fc   Pr>Fc
-#> Tratamento  3  2.761  0.9205 0.2769 0.84073
-#> Bloco       3 42.421 14.1402 4.2536 0.03955
-#> Residuo     9 29.919  3.3243               
-#> Total      15 75.101                       
-#> ------------------------------------------------------------------------
-#> CV = 15.98 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.5522805 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.5836564 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 11.71364
-#> 2      2 11.84672
-#> 3      3 10.77937
-#> 4      4 11.31120
-#> ------------------------------------------------------------------------
 ```
+
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.88533, p-value = 0.04702
+
+![](README_files/figure-gfm/unnamed-chunk-6-2.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.43565, p-value = 0.7315
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL      SQ      QM      Fc   Pr>Fc
+    #> Tratamento  3   267.5   89.18 0.10686 0.95396
+    #> Bloco       3  4200.2 1400.08 1.67760 0.24049
+    #> Residuo     9  7511.2  834.57                
+    #> Total      15 11978.9                        
+    #> ------------------------------------------------------------------------
+    #> CV = 13.8 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.7915836 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.9544917 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 213.6775
+    #> 2      2 213.1625
+    #> 3      3 204.8750
+    #> 4      4 205.6625
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: number_perfilhos"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-3.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.90978, p-value = 0.1154
+
+![](README_files/figure-gfm/unnamed-chunk-6-4.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.34677, p-value = 0.7922
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL      SQ      QM      Fc   Pr>Fc
+    #> Tratamento  3   860.2  286.73 0.33186 0.80271
+    #> Bloco       3  4051.7 1350.56 1.56314 0.26496
+    #> Residuo     9  7776.1  864.01                
+    #> Total      15 12687.9                        
+    #> ------------------------------------------------------------------------
+    #> CV = 19.54 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.4201356 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.1366023 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis Medias
+    #> 1      1 156.00
+    #> 2      2 159.25
+    #> 3      3 142.00
+    #> 4      4 144.50
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: massa_10_canas"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-5.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.97381, p-value = 0.8959
+
+![](README_files/figure-gfm/unnamed-chunk-6-6.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.64198, p-value = 0.6026
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL     SQ     QM     Fc    Pr>Fc
+    #> Tratamento  3  8.356 2.7854 1.8467 0.209015
+    #> Bloco       3 26.226 8.7421 5.7959 0.017348
+    #> Residuo     9 13.575 1.5083                
+    #> Total      15 48.158                       
+    #> ------------------------------------------------------------------------
+    #> CV = 7.65 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.9543917 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.04776347 
+    #> ATENCAO: a 5% de significancia, as variancias nao podem ser consideradas homogeneas!
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis  Medias
+    #> 1      1 16.2375
+    #> 2      2 16.8875
+    #> 3      3 14.9000
+    #> 4      4 16.2250
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: espessura_media_10_canas"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-7.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.92173, p-value = 0.1798
+
+![](README_files/figure-gfm/unnamed-chunk-6-8.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.95588, p-value = 0.4448
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL       SQ       QM      Fc   Pr>Fc
+    #> Tratamento  3 0.001622 0.000541 0.04198 0.98778
+    #> Bloco       3 0.103110 0.034370 2.66879 0.11089
+    #> Residuo     9 0.115906 0.012878                
+    #> Total      15 0.220637                         
+    #> ------------------------------------------------------------------------
+    #> CV = 4.28 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.9862714 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.6400136 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 2.662500
+    #> 2      2 2.655000
+    #> 3      3 2.635000
+    #> 4      4 2.649528
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: number_entrenos_media_10_canas"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-9.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.94519, p-value = 0.4175
+
+![](README_files/figure-gfm/unnamed-chunk-6-10.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.83137, p-value = 0.5019
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL     SQ     QM     Fc   Pr>Fc
+    #> Tratamento  3  9.335 3.1117 1.8406 0.21006
+    #> Bloco       3  7.890 2.6300 1.5557 0.26665
+    #> Residuo     9 15.215 1.6906               
+    #> Total      15 32.440                      
+    #> ------------------------------------------------------------------------
+    #> CV = 8.28 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.6853326 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.8308401 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis Medias
+    #> 1      1 15.825
+    #> 2      2 16.900
+    #> 3      3 15.050
+    #> 4      4 15.025
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: altura_planta_p_q"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-11.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.94306, p-value = 0.3882
+
+![](README_files/figure-gfm/unnamed-chunk-6-12.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.98861, p-value = 0.4309
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL      SQ       QM     Fc   Pr>Fc
+    #> Tratamento  3 0.09484 0.031615 1.8782 0.20370
+    #> Bloco       3 0.08579 0.028595 1.6988 0.23625
+    #> Residuo     9 0.15149 0.016833               
+    #> Total      15 0.33212                        
+    #> ------------------------------------------------------------------------
+    #> CV = 5.58 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.4947776 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.7929306 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 2.338250
+    #> 2      2 2.443639
+    #> 3      3 2.258167
+    #> 4      4 2.254278
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: populacao"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-13.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.90978, p-value = 0.1154
+
+![](README_files/figure-gfm/unnamed-chunk-6-14.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.34677, p-value = 0.7922
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL         SQ        QM      Fc   Pr>Fc
+    #> Tratamento  3  149353042  49784347 0.33186 0.80271
+    #> Bloco       3  703488312 234496104 1.56314 0.26496
+    #> Residuo     9 1350145855 150016206                
+    #> Total      15 2202987209                          
+    #> ------------------------------------------------------------------------
+    #> CV = 19.54 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.4201356 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.1366023 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 65003.25
+    #> 2      2 66357.48
+    #> 3      3 59169.62
+    #> 4      4 60211.34
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: tch_1_2_linhas_8m"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-15.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.88533, p-value = 0.04702
+
+![](README_files/figure-gfm/unnamed-chunk-6-16.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.43565, p-value = 0.7315
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL      SQ      QM      Fc   Pr>Fc
+    #> Tratamento  3   46.45  15.484 0.10686 0.95396
+    #> Bloco       3  729.28 243.093 1.67760 0.24049
+    #> Residuo     9 1304.15 144.906                
+    #> Total      15 2079.88                        
+    #> ------------------------------------------------------------------------
+    #> CV = 13.8 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.7915836 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.9544917 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 89.03674
+    #> 2      2 88.82215
+    #> 3      3 85.36885
+    #> 4      4 85.69699
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: tch_2_10_canas"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-17.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.86988, p-value = 0.02708
+
+![](README_files/figure-gfm/unnamed-chunk-6-18.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.22861, p-value = 0.8747
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL      SQ      QM      Fc  Pr>Fc
+    #> Tratamento  3  1318.8  439.61 0.79459 0.5271
+    #> Bloco       3  4749.9 1583.31 2.86179 0.0966
+    #> Residuo     9  4979.3  553.26               
+    #> Total      15 11048.1                       
+    #> ------------------------------------------------------------------------
+    #> CV = 23.16 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.2078563 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.2856511 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis    Medias
+    #> 1      1 104.56148
+    #> 2      2 113.92601
+    #> 3      3  88.89247
+    #> 4      4  98.85494
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: tch_3_media"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-19.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.93802, p-value = 0.3254
+
+![](README_files/figure-gfm/unnamed-chunk-6-20.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 1.011, p-value = 0.4217
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL     SQ     QM     Fc   Pr>Fc
+    #> Tratamento  3  447.0 149.00 1.0964 0.39964
+    #> Bloco       3 2070.3 690.12 5.0783 0.02500
+    #> Residuo     9 1223.0 135.89               
+    #> Total      15 3740.4                      
+    #> ------------------------------------------------------------------------
+    #> CV = 12.35 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.1618443 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.5649149 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis    Medias
+    #> 1      1  96.79911
+    #> 2      2 101.37408
+    #> 3      3  87.13066
+    #> 4      4  92.27597
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: pol"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-21.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.94265, p-value = 0.3827
+
+![](README_files/figure-gfm/unnamed-chunk-6-22.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.14059, p-value = 0.9337
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL      SQ      QM      Fc   Pr>Fc
+    #> Tratamento  3  2.6417 0.88056 0.73659 0.55617
+    #> Bloco       3  3.0764 1.02545 0.85780 0.49719
+    #> Residuo     9 10.7591 1.19545                
+    #> Total      15 16.4771                        
+    #> ------------------------------------------------------------------------
+    #> CV = 7.64 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.5013209 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.8613202 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 14.27396
+    #> 2      2 13.67682
+    #> 3      3 14.75126
+    #> 4      4 14.56227
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: fibra"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-23.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.94807, p-value = 0.4597
+
+![](README_files/figure-gfm/unnamed-chunk-6-24.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 1.6992, p-value = 0.2201
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL     SQ      QM      Fc   Pr>Fc
+    #> Tratamento  3 1.5049 0.50164 1.07525 0.40739
+    #> Bloco       3 1.0434 0.34781 0.74553 0.55158
+    #> Residuo     9 4.1988 0.46653                
+    #> Total      15 6.7471                        
+    #> ------------------------------------------------------------------------
+    #> CV = 5.13 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.4570751 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.847167 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis  Medias
+    #> 1      1 13.1976
+    #> 2      2 13.0002
+    #> 3      3 13.2540
+    #> 4      4 13.8246
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: pza"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-25.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.86738, p-value = 0.0248
+
+![](README_files/figure-gfm/unnamed-chunk-6-26.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.50942, p-value = 0.6832
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL     SQ     QM      Fc   Pr>Fc
+    #> Tratamento  3  5.410 1.8032 0.23179 0.87199
+    #> Bloco       3 20.289 6.7631 0.86933 0.49192
+    #> Residuo     9 70.017 7.7797                
+    #> Total      15 95.716                       
+    #> ------------------------------------------------------------------------
+    #> CV = 3.67 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.5806142 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.791978 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis  Medias
+    #> 1      1 75.2775
+    #> 2      2 75.5700
+    #> 3      3 76.5050
+    #> 4      4 76.6250
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: pcc"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-27.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.89155, p-value = 0.05893
+
+![](README_files/figure-gfm/unnamed-chunk-6-28.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.44517, p-value = 0.7251
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL      SQ      QM      Fc   Pr>Fc
+    #> Tratamento  3  1.4583 0.48610 0.66795 0.59265
+    #> Bloco       3  2.1510 0.71699 0.98522 0.44223
+    #> Residuo     9  6.5498 0.72775                
+    #> Total      15 10.1590                        
+    #> ------------------------------------------------------------------------
+    #> CV = 7.2 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.4033873 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.703461 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 11.83004
+    #> 2      2 11.38075
+    #> 3      3 12.21645
+    #> 4      4 11.94921
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: ar_percent_caldo"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-29.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.86767, p-value = 0.02506
+
+![](README_files/figure-gfm/unnamed-chunk-6-30.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.51126, p-value = 0.6821
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL       SQ        QM      Fc   Pr>Fc
+    #> Tratamento  3 0.006367 0.0021222 0.23193 0.87189
+    #> Bloco       3 0.023860 0.0079532 0.86917 0.49200
+    #> Residuo     9 0.082354 0.0091504                
+    #> Total      15 0.112580                          
+    #> ------------------------------------------------------------------------
+    #> CV = 9.25 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.5791314 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.7911165 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 1.058878
+    #> 2      2 1.049034
+    #> 3      3 1.016814
+    #> 4      4 1.012742
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: ar_percent_cana"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-31.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.92396, p-value = 0.1953
+
+![](README_files/figure-gfm/unnamed-chunk-6-32.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.72625, p-value = 0.5557
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL       SQ        QM      Fc   Pr>Fc
+    #> Tratamento  3 0.006549 0.0021829 0.31943 0.81128
+    #> Bloco       3 0.018483 0.0061610 0.90155 0.47753
+    #> Residuo     9 0.061504 0.0068338                
+    #> Total      15 0.086536                          
+    #> ------------------------------------------------------------------------
+    #> CV = 9.65 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.3476115 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.8923189 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis    Medias
+    #> 1      1 0.8789865
+    #> 2      2 0.8729498
+    #> 3      3 0.8428425
+    #> 4      4 0.8305283
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: atr"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-33.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.89744, p-value = 0.07315
+
+![](README_files/figure-gfm/unnamed-chunk-6-34.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.52633, p-value = 0.6725
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL     SQ     QM      Fc   Pr>Fc
+    #> Tratamento  3 121.91 40.635 0.73049 0.55932
+    #> Bloco       3 175.31 58.438 1.05052 0.41665
+    #> Residuo     9 500.65 55.628                
+    #> Total      15 797.87                       
+    #> ------------------------------------------------------------------------
+    #> CV = 6.19 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.3983339 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.6121557 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 120.6500
+    #> 2      2 116.3175
+    #> 3      3 124.0025
+    #> 4      4 121.3475
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: tah_1"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-35.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.96523, p-value = 0.7567
+
+![](README_files/figure-gfm/unnamed-chunk-6-36.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 2.4656, p-value = 0.1123
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL     SQ     QM      Fc   Pr>Fc
+    #> Tratamento  3  0.271 0.0904 0.04043 0.98843
+    #> Bloco       3 15.270 5.0900 2.27690 0.14857
+    #> Residuo     9 20.119 2.2355                
+    #> Total      15 35.660                       
+    #> ------------------------------------------------------------------------
+    #> CV = 14.21 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.9938142 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.3646106 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 10.70548
+    #> 2      2 10.34328
+    #> 3      3 10.54626
+    #> 4      4 10.48162
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: tah_2"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-37.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.861, p-value = 0.01986
+
+![](README_files/figure-gfm/unnamed-chunk-6-38.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.29297, p-value = 0.8297
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL      SQ      QM      Fc   Pr>Fc
+    #> Tratamento  3  11.855  3.9516 0.35593 0.78623
+    #> Bloco       3  90.731 30.2437 2.72410 0.10655
+    #> Residuo     9  99.921 11.1023                
+    #> Total      15 202.506                        
+    #> ------------------------------------------------------------------------
+    #> CV = 27.08 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.5947627 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.5202268 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 12.72181
+    #> 2      2 13.35016
+    #> 3      3 11.01247
+    #> 4      4 12.14077
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: tah_3"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-6-39.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.93777, p-value = 0.3226
+
+![](README_files/figure-gfm/unnamed-chunk-6-40.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 1.4157, p-value = 0.2864
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL     SQ      QM     Fc   Pr>Fc
+    #> Tratamento  3  2.761  0.9205 0.2769 0.84073
+    #> Bloco       3 42.421 14.1402 4.2536 0.03955
+    #> Residuo     9 29.919  3.3243               
+    #> Total      15 75.101                       
+    #> ------------------------------------------------------------------------
+    #> CV = 15.98 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.5522805 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.5836564 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 11.71364
+    #> 2      2 11.84672
+    #> 3      3 10.77937
+    #> 4      4 11.31120
+    #> ------------------------------------------------------------------------
 
 ## Análise para Ensaio 02
 
@@ -843,13 +1203,13 @@ for(i in  7:length(ensaio_2)){
   # print("--------Análise de resíduos---------")
   trat <- ensaio_1 %>%  pull(tratamento)
   y <- data.frame(ensaio_2)[,i]
-  # mod <- aov(y~as.factor(trat))
-  # rs<-rstudent(mod)
-  # hist(rs)
-  # print(shapiro.test(rs))
-  # 
-  # plot(y ~ as.factor(trat))
-  # print(lawstat::levene.test(y,trat))
+  mod <- aov(y~as.factor(trat))
+  rs<-rstudent(mod)
+  hist(rs)
+  print(shapiro.test(rs))
+
+  plot(y ~ as.factor(trat))
+  print(lawstat::levene.test(y,trat))
   
   print("---------Teste F da ANOVA - DBC -----------")
   bl <- ensaio_2 %>% pull(repeticao)
@@ -858,683 +1218,1043 @@ for(i in  7:length(ensaio_2)){
 #> [1] "************ Análise de Variância ***************"
 #> [1] "Variável: massa_8m"
 #> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL      SQ      QM      Fc   Pr>Fc
-#> Tratamento  3  6237.8 2079.28 2.09691 0.17092
-#> Bloco       3   649.8  216.59 0.21843 0.88119
-#> Residuo     9  8924.4  991.60                
-#> Total      15 15812.0                        
-#> ------------------------------------------------------------------------
-#> CV = 15.28 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.2002677 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.6968564 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 221.4875
-#> 2      2 228.5750
-#> 3      3 180.1875
-#> 4      4 194.0125
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: number_perfilhos"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL     SQ     QM      Fc   Pr>Fc
-#> Tratamento  3  896.7 298.92 1.47593 0.28557
-#> Bloco       3  524.2 174.75 0.86284 0.49488
-#> Residuo     9 1822.8 202.53                
-#> Total      15 3243.7                       
-#> ------------------------------------------------------------------------
-#> CV = 9.16 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.4636773 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.2410245 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis Medias
-#> 1      1  162.5
-#> 2      2  161.0
-#> 3      3  143.5
-#> 4      4  154.5
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: massa_10_canas"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL     SQ     QM     Fc   Pr>Fc
-#> Tratamento  3 15.047 5.0158 2.8701 0.09604
-#> Bloco       3  5.964 1.9879 1.1375 0.38509
-#> Residuo     9 15.729 1.7476               
-#> Total      15 36.740                      
-#> ------------------------------------------------------------------------
-#> CV = 9.34 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.957082 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.6293006 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis  Medias
-#> 1      1 15.1125
-#> 2      2 15.0625
-#> 3      3 12.8625
-#> 4      4 13.5625
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: espessura_media_10_canas"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL       SQ       QM     Fc   Pr>Fc
-#> Tratamento  3 0.183606 0.061202 7.7410 0.00731
-#> Bloco       3 0.014134 0.004711 0.5959 0.63342
-#> Residuo     9 0.071156 0.007906               
-#> Total      15 0.268896                        
-#> ------------------------------------------------------------------------
-#> CV = 3.43 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.4716963 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.6966582 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> Teste de Tukey
-#> ------------------------------------------------------------------------
-#> Grupos Tratamentos Medias
-#> a     1   2.6925 
-#> a     2   2.658889 
-#> ab    4   2.595 
-#>  b    3   2.415 
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: number_entrenos_media_10_canas"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL      SQ     QM     Fc   Pr>Fc
-#> Tratamento  3  4.4619 1.4873 1.3259 0.32553
-#> Bloco       3 11.9619 3.9873 3.5546 0.06065
-#> Residuo     9 10.0956 1.1217               
-#> Total      15 26.5194                      
-#> ------------------------------------------------------------------------
-#> CV = 6.76 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.4535779 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.5317119 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis Medias
-#> 1      1 15.950
-#> 2      2 16.375
-#> 3      3 15.150
-#> 4      4 15.150
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: altura_planta_p_q"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL       SQ       QM     Fc    Pr>Fc
-#> Tratamento  3 0.050187 0.016729 1.4320 0.296660
-#> Bloco       3 0.127414 0.042471 3.6355 0.057609
-#> Residuo     9 0.105142 0.011682                
-#> Total      15 0.282743                         
-#> ------------------------------------------------------------------------
-#> CV = 4.66 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.5141725 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.6081264 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 2.343200
-#> 2      2 2.400333
-#> 3      3 2.273500
-#> 4      4 2.261750
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: populacao"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL        SQ       QM      Fc   Pr>Fc
-#> Tratamento  3 155701333 51900444 1.47593 0.28557
-#> Bloco       3  91024727 30341576 0.86284 0.49488
-#> Residuo     9 316481299 35164589                
-#> Total      15 563207358                         
-#> ------------------------------------------------------------------------
-#> CV = 9.16 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.4636773 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.2410245 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 67711.72
-#> 2      2 67086.69
-#> 3      3 59794.66
-#> 4      4 64378.22
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: tch_1_2_linhas_8m"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL      SQ     QM      Fc   Pr>Fc
-#> Tratamento  3 1083.07 361.02 2.09691 0.17092
-#> Bloco       3  112.82  37.61 0.21843 0.88119
-#> Residuo     9 1549.52 172.17                
-#> Total      15 2745.41                       
-#> ------------------------------------------------------------------------
-#> CV = 15.28 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.2002677 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.6968564 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 92.29107
-#> 2      2 95.24435
-#> 3      3 75.08188
-#> 4      4 80.84258
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: tch_2_10_canas"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL      SQ     QM     Fc   Pr>Fc
-#> Tratamento  3 1701.94 567.31 3.8766 0.04957
-#> Bloco       3  121.63  40.54 0.2770 0.84063
-#> Residuo     9 1317.09 146.34               
-#> Total      15 3140.66                      
-#> ------------------------------------------------------------------------
-#> CV = 13.17 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.3321523 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.2410109 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> Teste de Tukey
-#> ------------------------------------------------------------------------
-#> Grupos Tratamentos Medias
-#> a     1   102.0259 
-#> a     2   100.9389 
-#> a     4   87.41062 
-#> a     3   77.03041 
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: tch_3_media"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL      SQ     QM     Fc   Pr>Fc
-#> Tratamento  3 1361.73 453.91 3.3196 0.07067
-#> Bloco       3   23.39   7.80 0.0570 0.98099
-#> Residuo     9 1230.62 136.74               
-#> Total      15 2615.74                      
-#> ------------------------------------------------------------------------
-#> CV = 13.16 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.3382797 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.4395868 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 97.15850
-#> 2      2 98.09162
-#> 3      3 76.05615
-#> 4      4 84.12660
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: pol"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL     SQ      QM      Fc   Pr>Fc
-#> Tratamento  3 0.6439 0.21463 0.38204 0.76851
-#> Bloco       3 0.8051 0.26836 0.47768 0.70565
-#> Residuo     9 5.0561 0.56179                
-#> Total      15 6.5051                        
-#> ------------------------------------------------------------------------
-#> CV = 5.2 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.1263727 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.9964091 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 14.20971
-#> 2      2 14.22579
-#> 3      3 14.55944
-#> 4      4 14.66432
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: fibra"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL      SQ       QM      Fc   Pr>Fc
-#> Tratamento  3 0.17931 0.059772 0.57585 0.64519
-#> Bloco       3 0.28039 0.093465 0.90046 0.47801
-#> Residuo     9 0.93417 0.103797                
-#> Total      15 1.39388                         
-#> ------------------------------------------------------------------------
-#> CV = 2.47 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.9055244 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.9258031 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis  Medias
-#> 1      1 13.0274
-#> 2      2 12.9930
-#> 3      3 13.2240
-#> 4      4 12.9460
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: pza"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL     SQ     QM      Fc   Pr>Fc
-#> Tratamento  3  5.364 1.7881 0.39446 0.76016
-#> Bloco       3 14.882 4.9607 1.09435 0.40040
-#> Residuo     9 40.797 4.5330                
-#> Total      15 61.043                       
-#> ------------------------------------------------------------------------
-#> CV = 2.75 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.200617 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.1128048 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis  Medias
-#> 1      1 76.8875
-#> 2      2 76.7200
-#> 3      3 78.2100
-#> 4      4 77.3800
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: pcc"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL     SQ      QM      Fc   Pr>Fc
-#> Tratamento  3 0.4286 0.14287 0.35294 0.78826
-#> Bloco       3 0.6207 0.20690 0.51113 0.68455
-#> Residuo     9 3.6431 0.40479                
-#> Total      15 4.6924                        
-#> ------------------------------------------------------------------------
-#> CV = 5.31 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.2321141 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.9510094 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 11.82046
-#> 2      2 11.84270
-#> 3      3 12.06705
-#> 4      4 12.21544
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: ar_percent_caldo"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL       SQ        QM      Fc   Pr>Fc
-#> Tratamento  3 0.006293 0.0020978 0.39296 0.76116
-#> Bloco       3 0.017506 0.0058354 1.09311 0.40085
-#> Residuo     9 0.048045 0.0053383                
-#> Total      15 0.071844                          
-#> ------------------------------------------------------------------------
-#> CV = 7.38 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.2016073 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.1122738 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis    Medias
-#> 1      1 1.0037813
-#> 2      2 1.0094073
-#> 3      3 0.9584159
-#> 4      4 0.9868720
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: ar_percent_cana"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL       SQ        QM      Fc   Pr>Fc
-#> Tratamento  3 0.004911 0.0016371 0.43866 0.73087
-#> Bloco       3 0.011153 0.0037178 0.99620 0.43781
-#> Residuo     9 0.033588 0.0037320                
-#> Total      15 0.049653                          
-#> ------------------------------------------------------------------------
-#> CV = 7.42 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.2285916 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.05026885 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis    Medias
-#> 1      1 0.8347857
-#> 2      2 0.8399694
-#> 3      3 0.7947140
-#> 4      4 0.8220474
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: atr"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL     SQ     QM      Fc   Pr>Fc
-#> Tratamento  3  34.63 11.545 0.36470 0.78025
-#> Bloco       3  44.98 14.994 0.47366 0.70822
-#> Residuo     9 284.90 31.656                
-#> Total      15 364.52                       
-#> ------------------------------------------------------------------------
-#> CV = 4.63 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.2928382 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.9046611 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis   Medias
-#> 1      1 120.1575
-#> 2      2 120.4175
-#> 3      3 122.1475
-#> 4      4 123.8100
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: tah_1"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL     SQ     QM      Fc   Pr>Fc
-#> Tratamento  3 12.998 4.3327 1.68356 0.23928
-#> Bloco       3  1.967 0.6556 0.25475 0.85610
-#> Residuo     9 23.162 2.5735                
-#> Total      15 38.127                       
-#> ------------------------------------------------------------------------
-#> CV = 15.38 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.3461738 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.5920857 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis    Medias
-#> 1      1 11.124082
-#> 2      2 11.426057
-#> 3      3  9.172959
-#> 4      4  9.987804
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: tah_2"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL     SQ     QM      Fc   Pr>Fc
-#> Tratamento  3 21.402 7.1340 2.31447 0.14435
-#> Bloco       3  1.557 0.5191 0.16842 0.91501
-#> Residuo     9 27.741 3.0824                
-#> Total      15 50.701                       
-#> ------------------------------------------------------------------------
-#> CV = 15.71 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.2540339 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.3650409 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis    Medias
-#> 1      1 12.291721
-#> 2      2 12.154901
-#> 3      3  9.438497
-#> 4      4 10.817488
-#> ------------------------------------------------------------------------
-#> [1] "************ Análise de Variância ***************"
-#> [1] "Variável: tah_3"
-#> [1] "*************************************************"
-#> [1] "---------Teste F da ANOVA - DBC -----------"
-#> ------------------------------------------------------------------------
-#> Quadro da analise de variancia
-#> ------------------------------------------------------------------------
-#>            GL     SQ     QM     Fc   Pr>Fc
-#> Tratamento  3 16.784 5.5947 2.2434 0.15245
-#> Bloco       3  0.370 0.1232 0.0494 0.98454
-#> Residuo     9 22.445 2.4939               
-#> Total      15 39.599                      
-#> ------------------------------------------------------------------------
-#> CV = 14.62 %
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de normalidade dos residuos 
-#> valor-p:  0.299818 
-#> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-#> ------------------------------------------------------------------------
-#> 
-#> ------------------------------------------------------------------------
-#> Teste de homogeneidade de variancia 
-#> valor-p:  0.1851713 
-#> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-#> ------------------------------------------------------------------------
-#> 
-#> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
-#>   Niveis    Medias
-#> 1      1 11.707902
-#> 2      2 11.790479
-#> 3      3  9.305728
-#> 4      4 10.402646
-#> ------------------------------------------------------------------------
 ```
+
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.93694, p-value = 0.3132
+
+![](README_files/figure-gfm/unnamed-chunk-7-2.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.89684, p-value = 0.471
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL      SQ      QM      Fc   Pr>Fc
+    #> Tratamento  3  6237.8 2079.28 2.09691 0.17092
+    #> Bloco       3   649.8  216.59 0.21843 0.88119
+    #> Residuo     9  8924.4  991.60                
+    #> Total      15 15812.0                        
+    #> ------------------------------------------------------------------------
+    #> CV = 15.28 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.2002677 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.6968564 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 221.4875
+    #> 2      2 228.5750
+    #> 3      3 180.1875
+    #> 4      4 194.0125
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: number_perfilhos"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-3.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.91612, p-value = 0.1461
+
+![](README_files/figure-gfm/unnamed-chunk-7-4.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 1.6052, p-value = 0.24
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL     SQ     QM      Fc   Pr>Fc
+    #> Tratamento  3  896.7 298.92 1.47593 0.28557
+    #> Bloco       3  524.2 174.75 0.86284 0.49488
+    #> Residuo     9 1822.8 202.53                
+    #> Total      15 3243.7                       
+    #> ------------------------------------------------------------------------
+    #> CV = 9.16 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.4636773 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.2410245 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis Medias
+    #> 1      1  162.5
+    #> 2      2  161.0
+    #> 3      3  143.5
+    #> 4      4  154.5
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: massa_10_canas"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-5.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.96744, p-value = 0.7957
+
+![](README_files/figure-gfm/unnamed-chunk-7-6.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 1.0504, p-value = 0.4059
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL     SQ     QM     Fc   Pr>Fc
+    #> Tratamento  3 15.047 5.0158 2.8701 0.09604
+    #> Bloco       3  5.964 1.9879 1.1375 0.38509
+    #> Residuo     9 15.729 1.7476               
+    #> Total      15 36.740                      
+    #> ------------------------------------------------------------------------
+    #> CV = 9.34 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.957082 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.6293006 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis  Medias
+    #> 1      1 15.1125
+    #> 2      2 15.0625
+    #> 3      3 12.8625
+    #> 4      4 13.5625
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: espessura_media_10_canas"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-7.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.97008, p-value = 0.84
+
+![](README_files/figure-gfm/unnamed-chunk-7-8.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.27813, p-value = 0.8401
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL       SQ       QM     Fc   Pr>Fc
+    #> Tratamento  3 0.183606 0.061202 7.7410 0.00731
+    #> Bloco       3 0.014134 0.004711 0.5959 0.63342
+    #> Residuo     9 0.071156 0.007906               
+    #> Total      15 0.268896                        
+    #> ------------------------------------------------------------------------
+    #> CV = 3.43 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.4716963 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.6966582 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> Teste de Tukey
+    #> ------------------------------------------------------------------------
+    #> Grupos Tratamentos Medias
+    #> a     1   2.6925 
+    #> a     2   2.658889 
+    #> ab    4   2.595 
+    #>  b    3   2.415 
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: number_entrenos_media_10_canas"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-9.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.93432, p-value = 0.2851
+
+![](README_files/figure-gfm/unnamed-chunk-7-10.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.71019, p-value = 0.5643
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL      SQ     QM     Fc   Pr>Fc
+    #> Tratamento  3  4.4619 1.4873 1.3259 0.32553
+    #> Bloco       3 11.9619 3.9873 3.5546 0.06065
+    #> Residuo     9 10.0956 1.1217               
+    #> Total      15 26.5194                      
+    #> ------------------------------------------------------------------------
+    #> CV = 6.76 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.4535779 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.5317119 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis Medias
+    #> 1      1 15.950
+    #> 2      2 16.375
+    #> 3      3 15.150
+    #> 4      4 15.150
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: altura_planta_p_q"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-11.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.93618, p-value = 0.3049
+
+![](README_files/figure-gfm/unnamed-chunk-7-12.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.5334, p-value = 0.668
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL       SQ       QM     Fc    Pr>Fc
+    #> Tratamento  3 0.050187 0.016729 1.4320 0.296660
+    #> Bloco       3 0.127414 0.042471 3.6355 0.057609
+    #> Residuo     9 0.105142 0.011682                
+    #> Total      15 0.282743                         
+    #> ------------------------------------------------------------------------
+    #> CV = 4.66 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.5141725 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.6081264 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 2.343200
+    #> 2      2 2.400333
+    #> 3      3 2.273500
+    #> 4      4 2.261750
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: populacao"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-13.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.91612, p-value = 0.1461
+
+![](README_files/figure-gfm/unnamed-chunk-7-14.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 1.6052, p-value = 0.24
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL        SQ       QM      Fc   Pr>Fc
+    #> Tratamento  3 155701333 51900444 1.47593 0.28557
+    #> Bloco       3  91024727 30341576 0.86284 0.49488
+    #> Residuo     9 316481299 35164589                
+    #> Total      15 563207358                         
+    #> ------------------------------------------------------------------------
+    #> CV = 9.16 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.4636773 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.2410245 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 67711.72
+    #> 2      2 67086.69
+    #> 3      3 59794.66
+    #> 4      4 64378.22
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: tch_1_2_linhas_8m"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-15.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.93694, p-value = 0.3132
+
+![](README_files/figure-gfm/unnamed-chunk-7-16.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.89684, p-value = 0.471
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL      SQ     QM      Fc   Pr>Fc
+    #> Tratamento  3 1083.07 361.02 2.09691 0.17092
+    #> Bloco       3  112.82  37.61 0.21843 0.88119
+    #> Residuo     9 1549.52 172.17                
+    #> Total      15 2745.41                       
+    #> ------------------------------------------------------------------------
+    #> CV = 15.28 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.2002677 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.6968564 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 92.29107
+    #> 2      2 95.24435
+    #> 3      3 75.08188
+    #> 4      4 80.84258
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: tch_2_10_canas"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-17.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.96403, p-value = 0.735
+
+![](README_files/figure-gfm/unnamed-chunk-7-18.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 1.716, p-value = 0.2167
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL      SQ     QM     Fc   Pr>Fc
+    #> Tratamento  3 1701.94 567.31 3.8766 0.04957
+    #> Bloco       3  121.63  40.54 0.2770 0.84063
+    #> Residuo     9 1317.09 146.34               
+    #> Total      15 3140.66                      
+    #> ------------------------------------------------------------------------
+    #> CV = 13.17 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.3321523 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.2410109 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> Teste de Tukey
+    #> ------------------------------------------------------------------------
+    #> Grupos Tratamentos Medias
+    #> a     1   102.0259 
+    #> a     2   100.9389 
+    #> a     4   87.41062 
+    #> a     3   77.03041 
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: tch_3_media"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-19.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.94501, p-value = 0.415
+
+![](README_files/figure-gfm/unnamed-chunk-7-20.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 1.068, p-value = 0.3991
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL      SQ     QM     Fc   Pr>Fc
+    #> Tratamento  3 1361.73 453.91 3.3196 0.07067
+    #> Bloco       3   23.39   7.80 0.0570 0.98099
+    #> Residuo     9 1230.62 136.74               
+    #> Total      15 2615.74                      
+    #> ------------------------------------------------------------------------
+    #> CV = 13.16 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.3382797 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.4395868 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 97.15850
+    #> 2      2 98.09162
+    #> 3      3 76.05615
+    #> 4      4 84.12660
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: pol"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-21.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.97757, p-value = 0.9413
+
+![](README_files/figure-gfm/unnamed-chunk-7-22.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.60684, p-value = 0.6231
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL     SQ      QM      Fc   Pr>Fc
+    #> Tratamento  3 0.6439 0.21463 0.38204 0.76851
+    #> Bloco       3 0.8051 0.26836 0.47768 0.70565
+    #> Residuo     9 5.0561 0.56179                
+    #> Total      15 6.5051                        
+    #> ------------------------------------------------------------------------
+    #> CV = 5.2 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.1263727 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.9964091 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 14.20971
+    #> 2      2 14.22579
+    #> 3      3 14.55944
+    #> 4      4 14.66432
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: fibra"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-23.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.96993, p-value = 0.8375
+
+![](README_files/figure-gfm/unnamed-chunk-7-24.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.86622, p-value = 0.4852
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL      SQ       QM      Fc   Pr>Fc
+    #> Tratamento  3 0.17931 0.059772 0.57585 0.64519
+    #> Bloco       3 0.28039 0.093465 0.90046 0.47801
+    #> Residuo     9 0.93417 0.103797                
+    #> Total      15 1.39388                         
+    #> ------------------------------------------------------------------------
+    #> CV = 2.47 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.9055244 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.9258031 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis  Medias
+    #> 1      1 13.0274
+    #> 2      2 12.9930
+    #> 3      3 13.2240
+    #> 4      4 12.9460
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: pza"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-25.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.96082, p-value = 0.6767
+
+![](README_files/figure-gfm/unnamed-chunk-7-26.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 1.6583, p-value = 0.2285
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL     SQ     QM      Fc   Pr>Fc
+    #> Tratamento  3  5.364 1.7881 0.39446 0.76016
+    #> Bloco       3 14.882 4.9607 1.09435 0.40040
+    #> Residuo     9 40.797 4.5330                
+    #> Total      15 61.043                       
+    #> ------------------------------------------------------------------------
+    #> CV = 2.75 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.200617 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.1128048 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis  Medias
+    #> 1      1 76.8875
+    #> 2      2 76.7200
+    #> 3      3 78.2100
+    #> 4      4 77.3800
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: pcc"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-27.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.97499, p-value = 0.9115
+
+![](README_files/figure-gfm/unnamed-chunk-7-28.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.79481, p-value = 0.52
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL     SQ      QM      Fc   Pr>Fc
+    #> Tratamento  3 0.4286 0.14287 0.35294 0.78826
+    #> Bloco       3 0.6207 0.20690 0.51113 0.68455
+    #> Residuo     9 3.6431 0.40479                
+    #> Total      15 4.6924                        
+    #> ------------------------------------------------------------------------
+    #> CV = 5.31 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.2321141 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.9510094 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 11.82046
+    #> 2      2 11.84270
+    #> 3      3 12.06705
+    #> 4      4 12.21544
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: ar_percent_caldo"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-29.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.96078, p-value = 0.676
+
+![](README_files/figure-gfm/unnamed-chunk-7-30.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 1.6547, p-value = 0.2292
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL       SQ        QM      Fc   Pr>Fc
+    #> Tratamento  3 0.006293 0.0020978 0.39296 0.76116
+    #> Bloco       3 0.017506 0.0058354 1.09311 0.40085
+    #> Residuo     9 0.048045 0.0053383                
+    #> Total      15 0.071844                          
+    #> ------------------------------------------------------------------------
+    #> CV = 7.38 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.2016073 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.1122738 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis    Medias
+    #> 1      1 1.0037813
+    #> 2      2 1.0094073
+    #> 3      3 0.9584159
+    #> 4      4 0.9868720
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: ar_percent_cana"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-31.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.97037, p-value = 0.8445
+
+![](README_files/figure-gfm/unnamed-chunk-7-32.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 1.9866, p-value = 0.1698
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL       SQ        QM      Fc   Pr>Fc
+    #> Tratamento  3 0.004911 0.0016371 0.43866 0.73087
+    #> Bloco       3 0.011153 0.0037178 0.99620 0.43781
+    #> Residuo     9 0.033588 0.0037320                
+    #> Total      15 0.049653                          
+    #> ------------------------------------------------------------------------
+    #> CV = 7.42 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.2285916 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.05026885 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis    Medias
+    #> 1      1 0.8347857
+    #> 2      2 0.8399694
+    #> 3      3 0.7947140
+    #> 4      4 0.8220474
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: atr"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-33.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.97541, p-value = 0.9167
+
+![](README_files/figure-gfm/unnamed-chunk-7-34.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 0.83555, p-value = 0.4999
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL     SQ     QM      Fc   Pr>Fc
+    #> Tratamento  3  34.63 11.545 0.36470 0.78025
+    #> Bloco       3  44.98 14.994 0.47366 0.70822
+    #> Residuo     9 284.90 31.656                
+    #> Total      15 364.52                       
+    #> ------------------------------------------------------------------------
+    #> CV = 4.63 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.2928382 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.9046611 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis   Medias
+    #> 1      1 120.1575
+    #> 2      2 120.4175
+    #> 3      3 122.1475
+    #> 4      4 123.8100
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: tah_1"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-35.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.9484, p-value = 0.4648
+
+![](README_files/figure-gfm/unnamed-chunk-7-36.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 2.5513, p-value = 0.1046
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL     SQ     QM      Fc   Pr>Fc
+    #> Tratamento  3 12.998 4.3327 1.68356 0.23928
+    #> Bloco       3  1.967 0.6556 0.25475 0.85610
+    #> Residuo     9 23.162 2.5735                
+    #> Total      15 38.127                       
+    #> ------------------------------------------------------------------------
+    #> CV = 15.38 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.3461738 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.5920857 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis    Medias
+    #> 1      1 11.124082
+    #> 2      2 11.426057
+    #> 3      3  9.172959
+    #> 4      4  9.987804
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: tah_2"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-37.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.94146, p-value = 0.3673
+
+![](README_files/figure-gfm/unnamed-chunk-7-38.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 1.7523, p-value = 0.2096
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL     SQ     QM      Fc   Pr>Fc
+    #> Tratamento  3 21.402 7.1340 2.31447 0.14435
+    #> Bloco       3  1.557 0.5191 0.16842 0.91501
+    #> Residuo     9 27.741 3.0824                
+    #> Total      15 50.701                       
+    #> ------------------------------------------------------------------------
+    #> CV = 15.71 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.2540339 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.3650409 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis    Medias
+    #> 1      1 12.291721
+    #> 2      2 12.154901
+    #> 3      3  9.438497
+    #> 4      4 10.817488
+    #> ------------------------------------------------------------------------
+    #> [1] "************ Análise de Variância ***************"
+    #> [1] "Variável: tah_3"
+    #> [1] "*************************************************"
+
+![](README_files/figure-gfm/unnamed-chunk-7-39.png)<!-- -->
+
+    #> 
+    #>  Shapiro-Wilk normality test
+    #> 
+    #> data:  rs
+    #> W = 0.93268, p-value = 0.2687
+
+![](README_files/figure-gfm/unnamed-chunk-7-40.png)<!-- -->
+
+    #> 
+    #>  Modified robust Brown-Forsythe Levene-type test based on the absolute
+    #>  deviations from the median
+    #> 
+    #> data:  y
+    #> Test Statistic = 1.9025, p-value = 0.1831
+    #> 
+    #> [1] "---------Teste F da ANOVA - DBC -----------"
+    #> ------------------------------------------------------------------------
+    #> Quadro da analise de variancia
+    #> ------------------------------------------------------------------------
+    #>            GL     SQ     QM     Fc   Pr>Fc
+    #> Tratamento  3 16.784 5.5947 2.2434 0.15245
+    #> Bloco       3  0.370 0.1232 0.0494 0.98454
+    #> Residuo     9 22.445 2.4939               
+    #> Total      15 39.599                      
+    #> ------------------------------------------------------------------------
+    #> CV = 14.62 %
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de normalidade dos residuos 
+    #> valor-p:  0.299818 
+    #> De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> ------------------------------------------------------------------------
+    #> Teste de homogeneidade de variancia 
+    #> valor-p:  0.1851713 
+    #> De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+    #> ------------------------------------------------------------------------
+    #> 
+    #> De acordo com o teste F, as medias nao podem ser consideradas diferentes.
+    #>   Niveis    Medias
+    #> 1      1 11.707902
+    #> 2      2 11.790479
+    #> 3      3  9.305728
+    #> 4      4 10.402646
+    #> ------------------------------------------------------------------------

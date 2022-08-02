@@ -54,13 +54,13 @@ for(i in  7:length(ensaio_1)){
   # print("--------Análise de resíduos---------")
   trat <- ensaio_1 %>%  pull(tratamento)
   y <- data.frame(ensaio_1)[,i]
-  # mod <- aov(y~as.factor(trat))
-  # rs<-rstudent(mod)
-  # hist(rs)
-  # print(shapiro.test(rs))
-  # 
-  # plot(y ~ as.factor(trat))
-  # print(lawstat::levene.test(y,trat))
+  mod <- aov(y~as.factor(trat))
+  rs<-rstudent(mod)
+  hist(rs)
+  print(shapiro.test(rs))
+
+  plot(y ~ as.factor(trat))
+  print(lawstat::levene.test(y,trat))
   
   print("---------Teste F da ANOVA - DBC -----------")
   bl <- ensaio_1 %>% pull(repeticao)
@@ -81,13 +81,13 @@ for(i in  7:length(ensaio_2)){
   # print("--------Análise de resíduos---------")
   trat <- ensaio_1 %>%  pull(tratamento)
   y <- data.frame(ensaio_2)[,i]
-  # mod <- aov(y~as.factor(trat))
-  # rs<-rstudent(mod)
-  # hist(rs)
-  # print(shapiro.test(rs))
-  # 
-  # plot(y ~ as.factor(trat))
-  # print(lawstat::levene.test(y,trat))
+  mod <- aov(y~as.factor(trat))
+  rs<-rstudent(mod)
+  hist(rs)
+  print(shapiro.test(rs))
+
+  plot(y ~ as.factor(trat))
+  print(lawstat::levene.test(y,trat))
   
   print("---------Teste F da ANOVA - DBC -----------")
   bl <- ensaio_2 %>% pull(repeticao)
